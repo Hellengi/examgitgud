@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ExamGitGud — пробный экзамен</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header>
+  <span class="logo">ExamGitGud</span>
+  <a href="tasks.html">Тренировка</a>
+  <a href="exam.html">Пробный экзамен</a>
+</header>
+<main>
+  <div class="card">
+    <h1>Пробный экзамен</h1>
+    <p>Математический анализ, экзамен</p>
+    <button id="startBtn">Начать пробный экзамен</button>
+    <p>Осталось времени: <span id="timer">--:--:--</span></p>
+  </div>
+  <div id="variant"></div>
+  <div class="card">
+    <button id="finishBtn" disabled>Завершить</button>
+    <p id="result"></p>
+  </div>
+</main>
+<script>
+  const user = JSON.parse(localStorage.getItem('user') || 'null');
+  if (!user) location.href = 'index.html';
+  let attempt = null, timerId = null;
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    const left = Math.max(0, Math.floor((new Date(attempt.deadline) - Date.now()) / 1000));
+    timer.textContent = pad(Math.floor(left / 3600)) + ':' + pad(Math.floor(left / 60) % 60) + ':' + pad(left % 60);
+    if (left === 0) finish();
+  }
+
+  startBtn.onclick = async () => {
+    attempt = await (await fetch('/api/attempts', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({userId: user.id, examId: 1})
+    })).json();
+    startBtn.disabled = true; finishBtn.disabled = false;
+    variant.innerHTML = '';
+    attempt.tasks.forEach((t, i) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.innerHTML = `<p><b>${i + 1}.</b> ${t.statement}</p><input id="exam-answer-${t.id}" placeholder="Ответ">`;
+      variant.appendChild(div);
+      document.getElementById('exam-answer-' + t.id).addEventListener('change', e =>
+        fetch(`/api/attempts/${attempt.id}/answers/${t.id}`, {
+          method: 'PUT', headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({answer: e.target.value})
+        }));
+    });
+    tick();
+    timerId = setInterval(tick, 1000);
+  };
+
+  async function finish() {
+    clearInterval(timerId);
+    for (const t of attempt.tasks) {
+      const v = document.getElementById('exam-answer-' + t.id).value;
+      if (v) await fetch(`/api/attempts/${attempt.id}/answers/${t.id}`, {
+        method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({answer: v})});
+    }
+    const r = await (await fetch(`/api/attempts/${attempt.id}/finish`, {method: 'POST'})).json();
+    finishBtn.disabled = true;
+    result.className = 'ok';
+    result.textContent = `Экзамен завершён. Результат: ${r.score} из ${r.maxScore} баллов`;
+  }
+  finishBtn.onclick = finish;
+</script>
+</body>
+</html>

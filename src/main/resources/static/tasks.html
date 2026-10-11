@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ExamGitGud — тренировка по темам</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header>
+  <span class="logo">ExamGitGud</span>
+  <a id="navTasks" href="tasks.html">Тренировка</a>
+  <a id="navExam" href="exam.html">Пробный экзамен</a>
+  <span id="userName"></span>
+</header>
+<main>
+  <div class="card">
+    <h1>Тренировка по темам</h1>
+    <label for="topic">Тема:</label>
+    <select id="topic"><option value="">Все темы</option></select>
+  </div>
+  <div id="tasks"></div>
+</main>
+<script>
+  const user = JSON.parse(localStorage.getItem('user') || 'null');
+  if (!user) location.href = 'index.html';
+  document.getElementById('userName').textContent = user ? user.fullName : '';
+
+  async function loadTopics() {
+    const topics = await (await fetch('/api/topics')).json();
+    for (const t of topics) {
+      const o = document.createElement('option');
+      o.value = t.id; o.textContent = t.name;
+      topic.appendChild(o);
+    }
+  }
+
+  async function loadTasks() {
+    const q = topic.value ? '?topicId=' + topic.value : '';
+    const tasks = await (await fetch('/api/tasks' + q)).json();
+    const box = document.getElementById('tasks');
+    box.innerHTML = '';
+    for (const t of tasks) {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = 'task-' + t.id;
+      div.innerHTML = `<p><b>Задание ${t.id}.</b> ${t.statement}</p>
+        <div class="row"><input id="answer-${t.id}" placeholder="Ответ">
+        <button id="check-${t.id}">Проверить</button></div>
+        <p id="result-${t.id}"></p>`;
+      box.appendChild(div);
+      document.getElementById('check-' + t.id).onclick = () => check(t.id);
+    }
+  }
+
+  async function check(id) {
+    const answer = document.getElementById('answer-' + id).value;
+    const r = await (await fetch(`/api/tasks/${id}/check`, {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({answer})
+    })).json();
+    const p = document.getElementById('result-' + id);
+    p.className = r.correct ? 'ok' : 'bad';
+    p.textContent = (r.correct ? 'Верно! ' : 'Неверно. Правильный ответ: ' + r.correctAnswer + '. ') + 'Разбор: ' + r.solution;
+  }
+
+  topic.addEventListener('change', loadTasks);
+  loadTopics().then(loadTasks);
+</script>
+</body>
+</html>

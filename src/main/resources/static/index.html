@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ExamGitGud — вход</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header><span class="logo">ExamGitGud</span></header>
+<main>
+  <div class="card">
+    <h1>Вход в личный кабинет</h1>
+    <label for="email">E-mail</label>
+    <input id="email" type="email" placeholder="name@example.com">
+    <label for="password">Пароль</label>
+    <input id="password" type="password">
+    <button id="loginBtn">Войти</button>
+    <p id="error" class="bad"></p>
+  </div>
+</main>
+<script>
+  document.getElementById('loginBtn').addEventListener('click', async () => {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email: email.value, password: password.value})
+    });
+    const data = await res.json();
+    if (res.ok) {
+      localStorage.setItem('user', JSON.stringify(data));
+      location.href = 'tasks.html';
+    } else {
+      document.getElementById('error').textContent = data.error;
+    }
+  });
+</script>
+</body>
+</html>

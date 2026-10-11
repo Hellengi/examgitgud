@@ -1,0 +1,490 @@
+{
+  "id": "93712a65-1e2d-4d90-9506-775b4ffbd542",
+  "version": "2.0",
+  "name": "ExamGitGud",
+  "url": "http://localhost:8080",
+  "tests": [
+    {
+      "id": "3a8975d0-53e4-4bbd-abc3-934864650d66",
+      "name": "TC-UI-01 Вход с верными данными",
+      "commands": [
+        {
+          "id": "6c2e8e3d-d5e2-4331-8975-d2f5faed6294",
+          "comment": "",
+          "command": "open",
+          "target": "/index.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "2bcc85b0-a9f7-4bfd-b16c-17456ef9eb1c",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x900",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "4bb42558-3b59-4379-88f2-5ee76ce9b636",
+          "comment": "",
+          "command": "type",
+          "target": "id=email",
+          "targets": [],
+          "value": "anna@example.com"
+        },
+        {
+          "id": "e1ef56a7-83c8-4056-9959-e239c48fc929",
+          "comment": "",
+          "command": "type",
+          "target": "id=password",
+          "targets": [],
+          "value": "Anna2026!"
+        },
+        {
+          "id": "d333790b-e0ea-4e87-a870-2adda1f99b13",
+          "comment": "",
+          "command": "click",
+          "target": "id=loginBtn",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "c139d1b5-72ea-43d6-88cb-a64c0189495f",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "id=topic",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "28772e5a-3e0d-473f-aa7d-038e6cf51108",
+          "comment": "",
+          "command": "assertTitle",
+          "target": "ExamGitGud — тренировка по темам",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "97b25e89-f99c-4b63-a343-e9fe9a5f9bf5",
+          "comment": "",
+          "command": "assertText",
+          "target": "id=userName",
+          "targets": [],
+          "value": "Анна Смирнова"
+        }
+      ]
+    },
+    {
+      "id": "b618bfb7-b13c-4073-afcb-d3bae58c9878",
+      "name": "TC-UI-02 Вход с неверным паролем",
+      "commands": [
+        {
+          "id": "4edaf3ea-97fa-4224-a1d9-3af91e0ced6b",
+          "comment": "",
+          "command": "open",
+          "target": "/index.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "a7c226c8-de61-486b-b36e-80cb309a70ed",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x900",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "3ca57d9f-6a29-4382-bd87-80f6542bc1ce",
+          "comment": "",
+          "command": "type",
+          "target": "id=email",
+          "targets": [],
+          "value": "anna@example.com"
+        },
+        {
+          "id": "aa4a12d3-450b-4bf9-8a30-c7ba6400b5ab",
+          "comment": "",
+          "command": "type",
+          "target": "id=password",
+          "targets": [],
+          "value": "qwerty"
+        },
+        {
+          "id": "af3d6ca4-5e9f-4d73-a6ce-835395fedb4b",
+          "comment": "",
+          "command": "click",
+          "target": "id=loginBtn",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "ad377fbe-2aae-4bc9-b38d-864bdbb05cf4",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "id=error",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "6d257194-7f77-4654-b1fd-fbaaa1f57343",
+          "comment": "",
+          "command": "assertText",
+          "target": "id=error",
+          "targets": [],
+          "value": "Ошибка аутентификации"
+        },
+        {
+          "id": "0385f299-b8db-44e4-829e-3dd85a2bbfc9",
+          "comment": "",
+          "command": "assertTitle",
+          "target": "ExamGitGud — вход",
+          "targets": [],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "2cf79207-f542-4afc-9d74-44f35984eeb5",
+      "name": "TC-UI-03 Верный ответ в тренировке",
+      "commands": [
+        {
+          "id": "6c2e8e3d-d5e2-4331-8975-d2f5faed6294",
+          "comment": "",
+          "command": "open",
+          "target": "/index.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "2bcc85b0-a9f7-4bfd-b16c-17456ef9eb1c",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x900",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "4bb42558-3b59-4379-88f2-5ee76ce9b636",
+          "comment": "",
+          "command": "type",
+          "target": "id=email",
+          "targets": [],
+          "value": "anna@example.com"
+        },
+        {
+          "id": "e1ef56a7-83c8-4056-9959-e239c48fc929",
+          "comment": "",
+          "command": "type",
+          "target": "id=password",
+          "targets": [],
+          "value": "Anna2026!"
+        },
+        {
+          "id": "d333790b-e0ea-4e87-a870-2adda1f99b13",
+          "comment": "",
+          "command": "click",
+          "target": "id=loginBtn",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "c139d1b5-72ea-43d6-88cb-a64c0189495f",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "id=topic",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "41cc9cac-e047-4425-a99c-af30719e27e0",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "id=answer-1",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "3892baff-f3a7-4392-8e90-90f88cb25d4d",
+          "comment": "",
+          "command": "type",
+          "target": "id=answer-1",
+          "targets": [],
+          "value": "4"
+        },
+        {
+          "id": "0e59cdbe-a17f-4a0e-a2f8-bd4d6b45a8a9",
+          "comment": "",
+          "command": "click",
+          "target": "id=check-1",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "0a1217a5-8c1b-4fb2-a913-b5c2559dc135",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "id=result-1",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "76949b19-8940-458c-94d2-0f11c5a3003e",
+          "comment": "",
+          "command": "assertText",
+          "target": "id=result-1",
+          "targets": [],
+          "value": "Верно! Разбор: При x != 2 дробь равна x + 2, поэтому предел равен 4."
+        }
+      ]
+    },
+    {
+      "id": "18e2a503-d0f5-4731-9355-606a9c307f19",
+      "name": "TC-UI-04 Неверный ответ в тренировке",
+      "commands": [
+        {
+          "id": "6c2e8e3d-d5e2-4331-8975-d2f5faed6294",
+          "comment": "",
+          "command": "open",
+          "target": "/index.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "2bcc85b0-a9f7-4bfd-b16c-17456ef9eb1c",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x900",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "4bb42558-3b59-4379-88f2-5ee76ce9b636",
+          "comment": "",
+          "command": "type",
+          "target": "id=email",
+          "targets": [],
+          "value": "anna@example.com"
+        },
+        {
+          "id": "e1ef56a7-83c8-4056-9959-e239c48fc929",
+          "comment": "",
+          "command": "type",
+          "target": "id=password",
+          "targets": [],
+          "value": "Anna2026!"
+        },
+        {
+          "id": "d333790b-e0ea-4e87-a870-2adda1f99b13",
+          "comment": "",
+          "command": "click",
+          "target": "id=loginBtn",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "c139d1b5-72ea-43d6-88cb-a64c0189495f",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "id=topic",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "8c39398d-90ae-47e6-938c-0ee3c440da96",
+          "comment": "",
+          "command": "select",
+          "target": "id=topic",
+          "targets": [],
+          "value": "label=Производная"
+        },
+        {
+          "id": "c39892cf-a5c2-43be-aa17-8e5a2de51d27",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "id=answer-4",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "815c7ebd-861c-4748-ab8a-4c77c706d8a1",
+          "comment": "",
+          "command": "type",
+          "target": "id=answer-4",
+          "targets": [],
+          "value": "9"
+        },
+        {
+          "id": "497f9edf-1160-43be-9146-59dc725d311e",
+          "comment": "",
+          "command": "click",
+          "target": "id=check-4",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "975a549e-7024-4cc5-869e-8694eae3d381",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "id=result-4",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "0c6e9315-6641-4dd9-8286-1dd38ed71f16",
+          "comment": "",
+          "command": "assertText",
+          "target": "id=result-4",
+          "targets": [],
+          "value": "Неверно. Правильный ответ: 6. Разбор: f'(x) = 2x, f'(3) = 6."
+        }
+      ]
+    },
+    {
+      "id": "1c03f257-704f-43f8-833c-7a7dbdf63799",
+      "name": "TC-UI-05 Пробный экзамен",
+      "commands": [
+        {
+          "id": "6c2e8e3d-d5e2-4331-8975-d2f5faed6294",
+          "comment": "",
+          "command": "open",
+          "target": "/index.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "2bcc85b0-a9f7-4bfd-b16c-17456ef9eb1c",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x900",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "4bb42558-3b59-4379-88f2-5ee76ce9b636",
+          "comment": "",
+          "command": "type",
+          "target": "id=email",
+          "targets": [],
+          "value": "anna@example.com"
+        },
+        {
+          "id": "e1ef56a7-83c8-4056-9959-e239c48fc929",
+          "comment": "",
+          "command": "type",
+          "target": "id=password",
+          "targets": [],
+          "value": "Anna2026!"
+        },
+        {
+          "id": "d333790b-e0ea-4e87-a870-2adda1f99b13",
+          "comment": "",
+          "command": "click",
+          "target": "id=loginBtn",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "c139d1b5-72ea-43d6-88cb-a64c0189495f",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "id=topic",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "83e301c4-9258-457f-90c2-e61aeb259b5f",
+          "comment": "",
+          "command": "open",
+          "target": "/exam.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "6ca92be7-a354-4837-a056-119de712d594",
+          "comment": "",
+          "command": "click",
+          "target": "id=startBtn",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "7dfe1c2e-1c4f-49a0-9f65-19d60c661011",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "id=exam-answer-1",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "a0a696ae-3266-4b67-829c-edf8dd080e21",
+          "comment": "",
+          "command": "assertNotText",
+          "target": "id=timer",
+          "targets": [],
+          "value": "--:--:--"
+        },
+        {
+          "id": "f449810a-bc9a-4c50-91a0-d5c1636473e0",
+          "comment": "",
+          "command": "type",
+          "target": "id=exam-answer-1",
+          "targets": [],
+          "value": "4"
+        },
+        {
+          "id": "4c366757-645a-421c-b405-160396a85fd7",
+          "comment": "",
+          "command": "type",
+          "target": "id=exam-answer-2",
+          "targets": [],
+          "value": "5"
+        },
+        {
+          "id": "6308d6d9-e792-4001-8fe2-e62bde94f212",
+          "comment": "",
+          "command": "click",
+          "target": "id=finishBtn",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "d3a4577c-f633-4c31-9c9e-4240d6f7a78b",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "id=result",
+          "targets": [],
+          "value": "5000"
+        },
+        {
+          "id": "28ea68e1-5908-49ad-8c3f-fe55d522f182",
+          "comment": "",
+          "command": "assertText",
+          "target": "id=result",
+          "targets": [],
+          "value": "Экзамен завершён. Результат: 2 из 5 баллов"
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "88dd7c9b-ae94-4197-bd4c-77c3b133ddfd",
+      "name": "Регрессия UI",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "3a8975d0-53e4-4bbd-abc3-934864650d66",
+        "b618bfb7-b13c-4073-afcb-d3bae58c9878",
+        "2cf79207-f542-4afc-9d74-44f35984eeb5",
+        "18e2a503-d0f5-4731-9355-606a9c307f19",
+        "1c03f257-704f-43f8-833c-7a7dbdf63799"
+      ]
+    }
+  ],
+  "urls": [
+    "http://localhost:8080/"
+  ],
+  "plugins": []
+}
